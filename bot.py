@@ -1,9 +1,9 @@
 import telebot
 from telebot import types
 from image_processing import crop_and_ocr
+from conf import token
 
-TOKEN = '7042756970:AAG2mR7hGBlygSvMHlEp9gdfxjHlrvzQd_k'
-bot = telebot.TeleBot(TOKEN)
+bot = telebot.TeleBot(token)
 
 main_menu = ('📑Контакты','🔗Другое','💸Поддержать')
 donation_menu = ('🫰Юмани','💰СБП','↩️Назад')
