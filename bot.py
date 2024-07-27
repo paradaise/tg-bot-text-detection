@@ -18,7 +18,9 @@ def keyboard(menu):
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    bot.reply_to(message, "📸Привет,отправь мне фотографию и посмотри что получится!",reply_markup = keyboard(main_menu))
+    username = message.from_user.username
+    name = message.from_user.first_name
+    bot.reply_to(message, "📸Привет,<b>{name}, AKA {username}</b>,отправь мне фотографию и посмотри что получится!",reply_markup = keyboard(main_menu),parse_mode = "html")
 
 @bot.message_handler(content_types=['audio', 'video', 'document', 'location', 'contact', 'sticker'])
 def handle_unsupported(message):
