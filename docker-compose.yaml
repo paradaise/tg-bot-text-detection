@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  bot:
+    image: python:3.12
+    container_name: sherlok-bot
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: >
+      /bin/sh -c "
+      apt-get update && 
+      apt-get install -y libgl1-mesa-glx && 
+      pip install --no-cache-dir -r requirements.txt && 
+      python bot.py"
