@@ -6,7 +6,7 @@ from conf import TOKEN
 bot = telebot.TeleBot(TOKEN)
 
 main_menu = ('📑Контакты','🔗Другое','💸Поддержать')
-donation_menu = ('🫰Юмани','💰СБП','↩️Назад')
+donation_menu = ('🫰Юмани','↩️Назад')
 
 def keyboard(menu):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -18,13 +18,12 @@ def keyboard(menu):
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    username = message.from_user.username
     name = message.from_user.first_name
-    bot.reply_to(message, "📸Привет,<b>{name}, AKA {username}</b>,отправь мне фотографию и посмотри что получится!",reply_markup = keyboard(main_menu),parse_mode = "html")
+    bot.reply_to(message, f"📸Привет,<b>{name},</b> я ищу текст на баннерах!\nОтправь фотографию и проверь!",reply_markup = keyboard(main_menu),parse_mode = "html")
 
 @bot.message_handler(content_types=['audio', 'video', 'document', 'location', 'contact', 'sticker'])
 def handle_unsupported(message):
-    bot.reply_to(message, "Извините, пока я работаю только с изображениями🙁")
+    bot.reply_to(message, "Извините, пока я работаю только с изображениями🙁.Скоро будет обработка видео!",parse_mode="html")
 
 @bot.message_handler(content_types=['text'])
 def get_information(message):
@@ -38,8 +37,6 @@ def get_information(message):
             bot.send_message(message.chat.id,'💵Вы можете поддержать наш проект,нажав кнопку ниже:', reply_markup = keyboard(donation_menu))
         elif message.text == '🫰Юмани':
             bot.send_message(message.chat.id,'🫰Вы можете поддержать Юмани по ссылке:\nhttps://yoomoney.ru/to/410013032669115')
-        elif message.text == '💰СБП':
-            bot.send_message(message.chat.id,'💰Вы можете поддержать CБП по ссылке:')
         elif message.text == '↩️Назад':
             bot.send_message(message.chat.id,'↩️Возвращаемся к основному меню', reply_markup = keyboard(main_menu))
 
@@ -51,9 +48,12 @@ def handle_photo(message):
 
         result_msg, result_img = crop_and_ocr(img_path)
 
-        bot.reply_to(message, result_msg)
+
+        bot.reply_to(message, result_msg,parse_mode="html")
+
         if result_img is not None:
-            bot.send_photo(message.chat.id, result_img)
+            for img in result_img:
+                bot.send_photo(message.chat.id, img)
 
 # Запуск бота
 bot.polling(none_stop=True)

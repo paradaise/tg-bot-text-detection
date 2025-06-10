@@ -39,35 +39,6 @@ def perform_ocr(image):
 
     return boxes, txts, scores
 
-def crop_and_ocr(img_path):
-    results = yolo(img_path)
-    regions = [box.xyxy[0].cpu().numpy().tolist() for reg in results for box in reg.boxes] if results[0].boxes is not None else []
-
-    image = Image.open(img_path).convert('RGB')
-
-    if regions:
-
-        result_msg = 'Вот что мне удалось увидеть:\n'
-
-        for i, region in enumerate(regions):
-
-            cropped_image = image.crop(region)
-            cropped_image = preprocess_image(cropped_image)
-            boxes, txts, scores = perform_ocr(cropped_image)
-            result_img = io.BytesIO()
-            cropped_image.save(result_img, format='PNG')
-            result_img = result_img.getvalue()
-
-            for txt, score in zip(txts, scores):
-                if (score > 0.2 and regions):
-                    result_msg += f"{txt}: {score:.2f}%\n"
-
-        return result_msg,result_img
-    else:
-        result_msg = 'Мне ничего не удалось найти.Попробуйте другое фото'
-        return result_msg, None
-
-yolo = YOLO('best.pt')
 
 def perform_ocr(image):
     # Инициализация OCR
@@ -95,25 +66,26 @@ def crop_and_ocr(img_path):
     image = Image.open(img_path).convert('RGB')
 
     if regions:
-
-        result_msg = 'Вот что мне удалось увидеть:\n'
+        result_msg = '<i>Вот что мне удалось увидеть:</i>\n'
+        result_imgs = []
 
         for i, region in enumerate(regions):
-
             cropped_image = image.crop(region)
             cropped_image = preprocess_image(cropped_image)
             boxes, txts, scores = perform_ocr(cropped_image)
+
             result_img = io.BytesIO()
             cropped_image.save(result_img, format='PNG')
             result_img = result_img.getvalue()
+            result_imgs.append(result_img)
 
             for txt, score in zip(txts, scores):
-                if (score > 0.2 and regions):
+                if (score > 0.4 and regions):
                     result_msg += f"{txt}: {score:.2f}%\n"
 
-        return result_msg,result_img
+        return result_msg, result_imgs
     else:
-        result_msg = 'Мне ничего не удалось найти.Попробуйте другое фото'
+        result_msg = 'Мне ничего не удалось найти🥺. Попробуйте другое фото'
         return result_msg, None
 
 yolo = YOLO('best.pt')
