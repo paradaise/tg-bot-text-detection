@@ -39,7 +39,6 @@ def perform_ocr(image):
 
     return boxes, txts, scores
 
-
 def perform_ocr(image):
     # Инициализация OCR
     reader = easyocr.Reader(['ru', 'en'],gpu= True)
