@@ -9,15 +9,14 @@
 ## Краткая презентация
 
 <p align="center">
-  <!-- Примеры работы: вставьте свои изображения ниже -->
-  <img src="examples/image0.png" width="100%"/>
-  <img src="examples/image2.png" width="100%"/>
-  <img src="examples/image3.png" width="100%"/>
-  <img src="examples/image4.png" width="100%"/>
-  <img src="examples/image5.png" width="100%"/>
-  <img src="examples/image6.png" width="100%"/>
-  <img src="examples/image7.png" width="100%"/>
-  <img src="examples/image8.png" width="100%"/>
+  <img src="demo/used_tools.png" width="100%"/>
+  <img src="demo/data_markup.png" width="100%"/>
+  <img src="demo/metrics_stats.png" width="100%"/>
+  <img src="demo/img_prerender.png" width="100%"/>
+  <img src="demo/result_model_train.png" width="100%"/>
+  <img src="demo/bot_exeption.png" width="100%"/>
+  <img src="demo/bot_vaildation.png" width="100%"/>
+  <img src="demo/bot_result_msg.png" width="100%"/>
 </p>
 
 ---
