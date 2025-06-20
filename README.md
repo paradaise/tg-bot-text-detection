@@ -10,12 +10,11 @@
 
 <p align="center">
   <!-- Примеры работы: вставьте свои изображения ниже -->
-  <img src="examples/image.png" width="100%"/>
+  <img src="examples/image0.png" width="100%"/>
   <img src="examples/image2.png" width="100%"/>
-  <br/>
+  <img src="examples/image3.png" width="100%"/>
   <img src="examples/image4.png" width="100%"/>
   <img src="examples/image5.png" width="100%"/>
-  <br/>
   <img src="examples/image6.png" width="100%"/>
   <img src="examples/image7.png" width="100%"/>
   <img src="examples/image8.png" width="100%"/>
@@ -72,7 +71,7 @@ docker-compose up --build
 ## Контакты
 
 - Гуреев Кирилл: [Telegram](https://t.me/Valer04ka1488) | [VK](https://vk.com/abchik1488) | [GitHub](https://github.com/Abchik)
-- Гоголев Виктор: [Telegram](https://t.me/victor_gogolev) | [VK](https://victor_gogolev) | [GitHub](https://github.com/paradaise)
+- Гоголев Виктор: [Telegram](https://t.me/victor_gogolev) | [VK](https://vk.com/victor_gogolev) | [GitHub](https://github.com/paradaise)
 
 ---
 
